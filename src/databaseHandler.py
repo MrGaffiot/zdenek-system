@@ -1,7 +1,7 @@
 import sqlite3
 
 class DatabaseHandler:
-    def __init__(self, path: str="src\database\\test.db"):
+    def __init__(self, path: str="src\data\\test.db"):
         self.con = sqlite3.connect("database.db")
         self.cursor = self.db.cursor()
 
