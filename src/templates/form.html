@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='test.css') }}">
+    <title>Input system</title>
+</head>
+<body>
+    <form action="/form" method="POST">
+        <label for="pathToImage">Path to image: </label>
+        <input type="text" name="pathToImage"><br><br>
+        <label for="url">URL: </label>
+        <input type="text" name="url"><br><br>
+        <label for="description">Description: </label>
+        <input type="text" name="description"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
