@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="url_for('static', filename='test.css')">
-    <title>Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='test.css') }}">
+    <title>Zdeněk Systém Test</title>
 </head>
 <body>
-    
+    <h1>Zdeněk Systém</h1>
+    {% for i in images %}
+    <div class="responsive">
+        <div class="gallery">
+            <a target="_blank" href="{{ i[1] }}">
+                <img src="{{ url_for('static', filename=i[0]) }}" alt="{{ i[2] }}">
+            </a>
+            <div class="desc">Zvíře</div>
+        </div>
+    </div>
+    {% endfor %}
 </body>
 </html>
