@@ -7,9 +7,7 @@
     <title>Input system</title>
 </head>
 <body>
-    <form action="/form" method="POST">
-        <label for="pathToImage">Path to image: </label>
-        <input type="text" name="pathToImage"><br><br>
+    <form action="/form" method="POST", enctype="multipart/form-data">
         <label for="url">URL: </label>
         <input type="text" name="url"><br><br>
         <label for="description">Description: </label>

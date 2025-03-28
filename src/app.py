@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, session
 import databaseHandler
 import jsonHandler
 
@@ -14,8 +14,8 @@ def hello_world():
 def handle_form():
     if request.method == 'POST':
         file = request.files['newFile']
-        print(file)
-        jsonHandler.write([[request.form['pathToImage'], request.form['url'], request.form['description']]])
-        return render_template('test.html', images=images)
+        file.save(f"static/{file.filename}")
+        jsonHandler.write([[file.filename, request.form['url'], request.form['description']]])
+        return render_template('test.html', images=jsonHandler.read()["posts"])
     
     return render_template('form.html')
