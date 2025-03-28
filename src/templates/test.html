@@ -14,7 +14,7 @@
             <a target="_blank" href="{{ i[1] }}">
                 <img src="{{ url_for('static', filename=i[0]) }}" alt="{{ i[2] }}">
             </a>
-            <div class="desc">Zvíře</div>
+            <div class="desc">{{ i[2] }}</div>
         </div>
     </div>
     {% endfor %}

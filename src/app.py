@@ -14,6 +14,6 @@ def hello_world():
 def handle_form():
     if request.method == 'POST':
         jsonHandler.write([[request.form['pathToImage'], request.form['url'], request.form['description']]])
-        return render_template('test.html', images=images)
+        return render_template('test.html', images=jsonHandler.read()["posts"])
     
     return render_template('form.html')
