@@ -6,6 +6,10 @@ app = Flask(__name__)
 
 images = jsonHandler.read()["posts"]
 
+with open("data\secretKey.txt", "r") as file:
+    print(file.read())
+    app.secret_key = file.read().encode("utf-8")
+
 @app.route("/")
 def hello_world():
     return render_template('test.html', images=images)
@@ -19,3 +23,6 @@ def handle_form():
         return render_template('test.html', images=jsonHandler.read()["posts"])
     
     return render_template('form.html')
+
+if __name__ == "__main__":
+    app.run(debug=True)
