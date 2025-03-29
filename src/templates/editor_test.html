@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.boundaries {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    border: 2px dashed #666;
+    margin: 20px;
+}
+
+.draggable {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    background: #4CAF50;
+    color: white;
+    cursor: move;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Prevent dragging outside boundaries */
+.boundaries {
+    overflow: hidden;
+}
+</style>
+</head>
+<body>
+<div class="boundaries">
+    <div class="draggable">Drag Me!</div>
+</div>
+
+<script>
+document.querySelector('.draggable').addEventListener('mousedown', function(e) {
+    const draggable = this;
+    const boundaries = draggable.parentElement.getBoundingClientRect();
+    const rect = draggable.getBoundingClientRect();
+    
+    let mouseX = e.clientX - rect.left;
+    let mouseY = e.clientY - rect.top;
+
+    function moveElement(e) {
+        // Calculate new position while staying within boundaries
+        let newX = e.clientX - mouseX;
+        let newY = e.clientY - mouseY;
+        
+        // Constrain movement
+        newX = Math.max(0, Math.min(newX, boundaries.width - rect.width));
+        newY = Math.max(0, Math.min(newY, boundaries.height - rect.height));
+        
+        draggable.style.left = `${newX}px`;
+        draggable.style.top = `${newY}px`;
+    }
+
+    document.addEventListener('mousemove', moveElement);
+    document.addEventListener('mouseup', () => {
+        document.removeEventListener('mousemove', moveElement);
+    });
+});
+</script>
+</body>
+</html>

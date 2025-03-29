@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container {
+    border: 2px solid #333;
+    padding: 20px;
+    margin: 20px;
+}
+
+.resizeable-div {
+    background-color: #2196F3;
+    min-height: 100px;
+    min-width: 300px;
+    max-height: 400px;
+    max-width: 800px;
+    transition: width 0.3s ease, height 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="resizeable-div">Scroll horizontally to resize width<br>Scroll vertically to resize height</div>
+</div>
+
+<script>
+const resizable = document.querySelector('.resizeable-div');
+const baseWidth = 400;
+const baseHight = 200;
+let newWidth = 400;
+let newHight = 200;
+
+// Handle horizontal scrolling
+resizable.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    
+        const delta = e.deltaX || -e.deltaY; // Fallback for browsers that don't support deltaX
+        newHight += (delta > 0 ? -10 : 10);
+        newHight = Math.max(100, Math.min(400, newHight));
+        
+        resizable.style.height = `${newHight}px`;
+
+        newWidth = (newHight/baseHight)*baseWidth;
+
+        resizable.style.width = `${newWidth}px`;
+    }
+);
+</script>
+</body>
+</html>

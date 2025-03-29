@@ -24,5 +24,16 @@ def handle_form():
     
     return render_template('form.html')
 
+@app.route('/editor')
+def editor():
+    return render_template('editor.html')
+
+@app.route('/editorTest')
+def editorTest():
+    return render_template('editor_test.html')
+
+@app.route('/scrollingTest')
+def scrollingTest():
+    return render_template('scrolling_test.html')
 if __name__ == "__main__":
     app.run(debug=True)
